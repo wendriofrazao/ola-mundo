@@ -54,20 +54,22 @@
       </div>
     </div>
     <script>
-      const result_delta = document.getElementById("resDelt");
-      const result_bhaskara = document.getElementById("resBhask");
+      const variableA = document.getElementById("numb_a").value;
+      const variableB = document.getElementById("numb_b").value;
+      const variableC = document.getElementById("numb_c").value;
 
       const button = document.getElementById("calcular");
 
-      button.addEventListener("click", Delta, Baskara);
+      button.addEventListener("click", () => {
+        Delta();
+        Baskara();
+      });
 
       function Delta() {
-        const variableA = document.getElementById("numb_a").value;
-        const variableB = document.getElementById("numb_b").value;
-        const variableC = document.getElementById("numb_c").value;
         // delta = b*2 + 4 * a * c
         let delta = Math.pow(variableB, 2) - 4 * variableA * variableC;
         //verificação se o delta for negativo
+        const result_delta = document.getElementById("resDelt");
         if (delta < 0) {
           alert("O Delta deu negativo! tente outro valor");
           return (result_delta.innerHTML = "Delta negativo");
@@ -76,14 +78,16 @@
       }
 
       function Baskara() {
-        const variableA = document.getElementById("numb_a").value;
-        const variableB = document.getElementById("numb_b").value;
-        const variableC = document.getElementById("numb_c").value;
+        let delta = Math.pow(variableB, 2) - 4 * variableA * variableC;
 
         const bhaskaraX1 = (-(variableB + Math.sqrt(delta)) / 2) * variableA;
         const bhaskaraX2 = (-(variableB - Math.sqrt(delta)) / 2) * variableA;
 
-        return (result_bhaskara.innerHTML = `X': ${bhaskaraX1} e X'': ${bhaskaraX2}' `);
+        const result_bhaskara = document.getElementById("resBhask");
+
+        return (result_bhaskara.innerHTML = `X': ${bhaskaraX1.toFixed(3)(
+          2
+        )} e X'': ${bhaskaraX2.toFixed(3)}' `);
       }
     </script>
   </body>
