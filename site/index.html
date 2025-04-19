@@ -45,18 +45,18 @@
 
         <div class="result">
           <div class="delta-result">
-            <p class="delta" id="resDelt">teste 01</p>
+            <p class="delta" id="resDelt"></p>
           </div>
           <div class="baskara-result">
-            <p class="baskara" id="resBhask">teste 02</p>
+            <p class="baskara" id="resBhask"></p>
           </div>
         </div>
       </div>
     </div>
     <script>
-      const variableA = document.getElementById("numb_a").value;
-      const variableB = document.getElementById("numb_b").value;
-      const variableC = document.getElementById("numb_c").value;
+      const variableA = document.getElementById("numb_a");
+      const variableB = document.getElementById("numb_b");
+      const variableC = document.getElementById("numb_c");
 
       const button = document.getElementById("calcular");
 
@@ -67,7 +67,8 @@
 
       function Delta() {
         // delta = b*2 + 4 * a * c
-        let delta = Math.pow(variableB, 2) - 4 * variableA * variableC;
+        let delta =
+          Math.pow(variableB.value, 2) - 4 * variableA.value * variableC.value;
         //verificação se o delta for negativo
         const result_delta = document.getElementById("resDelt");
         if (delta < 0) {
@@ -78,15 +79,22 @@
       }
 
       function Baskara() {
-        let delta = Math.pow(variableB, 2) - 4 * variableA * variableC;
+        let delta =
+          Math.pow(variableB.value, 2) - 4 * variableA.value * variableC.value;
 
-        const bhaskaraX1 = (-(variableB + Math.sqrt(delta)) / 2) * variableA;
-        const bhaskaraX2 = (-(variableB - Math.sqrt(delta)) / 2) * variableA;
+        const bhaskaraX1 =
+          (-(variableB.value + Math.sqrt(delta)) / 2) * variableA.value;
+        const bhaskaraX2 =
+          (-(variableB.value - Math.sqrt(delta)) / 2) * variableA.value;
 
         const result_bhaskara = document.getElementById("resBhask");
 
-        return (result_bhaskara.innerHTML = `X': ${bhaskaraX1.toFixed(3)(
-          2
+        if (delta < 0) {
+          return (result_bhaskara.innerHTML = "Delta negativo");
+        }
+
+        return (result_bhaskara.innerHTML = `X': ${bhaskaraX1.toFixed(
+          3
         )} e X'': ${bhaskaraX2.toFixed(3)}' `);
       }
     </script>
