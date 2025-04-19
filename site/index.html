@@ -45,13 +45,44 @@
 
         <div class="result">
           <div class="delta-result">
-            <p class="delta">teste 01</p>
+            <p class="delta" id="resDelt">teste 01</p>
           </div>
           <div class="baskara-result">
-            <p class="baskara">teste 02</p>
+            <p class="baskara" id="resBhask">teste 02</p>
           </div>
         </div>
       </div>
     </div>
+    <script>
+      const variableA = document.getElementById("numb_a").value;
+      const variableB = document.getElementById("numb_b").value;
+      const variableC = document.getElementById("numb_c").value;
+
+      const result_delta = document.getElementById("resDelt");
+      const result_bhaskara = document.getElementById("resBhask");
+
+      const button = document.getElementById("calcular");
+
+      button.addEventListener("click", Delta, Baskara);
+
+      function Delta() {
+        // delta = b*2 + 4 * a * c
+        let delta = Math.pow(variableB, 2) - 4 * variableA * variableC;
+        //verificação se o delta for negativo
+        if (delta < 0) {
+          alert("O Delta deu negativo! tente outro valor");
+          return (result_delta.innerHTML = "Delta negativo");
+        }
+        return (result_delta.innerHTML = delta);
+      }
+
+      function Baskara() {
+        const bhaskaraX1 = (-(variableB + Math.sqrt(delta)) / 2) * variableA;
+        const bhaskaraX2 = (-(variableB - Math.sqrt(delta)) / 2) * variableA;
+
+        let result = `X': ${bhaskaraX1} e X'': ${bhaskaraX2}' `;
+        return (result_bhaskara.innerHTML = result);
+      }
+    </script>
   </body>
 </html>
